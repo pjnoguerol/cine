@@ -63,7 +63,7 @@ public class ActoresFragment extends Fragment {
             if (networkInfo != null && networkInfo.isConnected()) {
                 new JsonTask().
                         execute(
-                                new URL("http://172.16.10.96/cinealdia/cinealdia_clase.php?actorlist"));
+                                new URL("http://www.intraco.es/cinealdia/cinealdia_clase.php?actorlist"));
             } else {
                 Toast.makeText(context, "Error de conexión", Toast.LENGTH_LONG).show();
             }
