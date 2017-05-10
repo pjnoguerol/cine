@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_peliculas"
+            android:icon="@mipmap/ic_pelicula"
+            android:title="Peliculas" />
+        <item
+            android:id="@+id/nav_actores"
+            android:icon="@mipmap/ic_actor"
+            android:title="Actores" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@mipmap/ic_director"
+            android:title="Directores" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@mipmap/ic_music"
+            android:title="Bandas Sonoras" />
+    </group>
+
+
+
+</menu>
