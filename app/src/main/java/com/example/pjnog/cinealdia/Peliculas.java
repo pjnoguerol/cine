@@ -1,5 +1,6 @@
 package com.example.pjnog.cinealdia;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by pjnog on 09/05/2017.
  */
 
-public class Peliculas
+public class Peliculas implements Serializable
 {
     private int id_pel;
     private String nombre;

@@ -1,5 +1,6 @@
 package com.example.pjnog.cinealdia;
 
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,6 +55,7 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.PersonViewHolder
     public void onBindViewHolder(final PersonViewHolder personViewHolder, int i) {
 
         String actor="Actores: ";
+        final Peliculas pel = peliculas.get(i);
         final int id = peliculas.get(i).getId_pel();
         personViewHolder.personName.setText(peliculas.get(i).getNombre());
         for (Actores act:peliculas.get(i).getActor())
@@ -67,9 +69,9 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.PersonViewHolder
             @Override
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "aqui.."+id , Toast.LENGTH_SHORT).show();
-                //Intent i = new Intent(view.getContext(), PeliculaActivity.class);
-                //i.putExtra("id", id);
-               // view.getContext().startActivity(i);
+                Intent i = new Intent(view.getContext(), PeliculasActivity.class);
+                i.putExtra("peliculas",pel);
+                view.getContext().startActivity(i);
             }
         });
         //personViewHolder.personPhoto.setImageResource(persons.get(i).photoId);

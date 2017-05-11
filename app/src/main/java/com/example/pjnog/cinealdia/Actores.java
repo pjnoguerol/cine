@@ -1,10 +1,12 @@
 package com.example.pjnog.cinealdia;
 
+import java.io.Serializable;
+
 /**
  * Created by pjnog on 08/05/2017.
  */
 
-public class Actores
+public class Actores implements Serializable
 
 
 {
