@@ -19,6 +19,18 @@
             android:icon="@mipmap/ic_music"
             android:title="Bandas Sonoras" />
     </group>
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/posicion"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Mi Posicion" />
+            <item
+                android:id="@+id/contactos"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Contactos" />
+        </menu>
+    </item>
 
 
 
