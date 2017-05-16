@@ -47,14 +47,23 @@ public class PeliculasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Context context = inflater.getContext();
-
+        int gen=getArguments().getInt("generos");
+        Toast.makeText(context, gen+"", Toast.LENGTH_LONG).show();
         View rootView =  inflater.inflate(R.layout.recyclerview_activity, container, false);
         rv=(RecyclerView)rootView.findViewById(R.id.rv);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(context, 2);
         rv.setLayoutManager(mLayoutManager);
         rv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         rv.setItemAnimator(new DefaultItemAnimator());
+        String url="";
+        if (gen==-2)
+        {
+           url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?peliculas";
+        }
+        else{
 
+            url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?genero="+gen;
+        }
         try {
             ConnectivityManager connMgr = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -63,7 +72,7 @@ public class PeliculasFragment extends Fragment {
             if (networkInfo != null && networkInfo.isConnected()) {
                 new JsonTask().
                         execute(
-                                new URL("http://www.intraco.es/cinealdia/cinealdia_clase.php?peliculas"));
+                                new URL(url));
             } else {
                 Toast.makeText(context, "Error de conexión", Toast.LENGTH_LONG).show();
             }

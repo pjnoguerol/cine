@@ -3,6 +3,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_generos"
+            android:icon="@mipmap/ic_pelicula"
+            android:title="Mis Generos" />
+        <item
             android:id="@+id/nav_peliculas"
             android:icon="@mipmap/ic_pelicula"
             android:title="Peliculas" />
@@ -18,13 +22,14 @@
             android:id="@+id/nav_manage"
             android:icon="@mipmap/ic_music"
             android:title="Bandas Sonoras" />
+        <item
+            android:id="@+id/posicion"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Mi Posicion" />
     </group>
     <item android:title="Communicate">
         <menu>
-            <item
-                android:id="@+id/posicion"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Mi Posicion" />
+
             <item
                 android:id="@+id/contactos"
                 android:icon="@drawable/ic_menu_send"

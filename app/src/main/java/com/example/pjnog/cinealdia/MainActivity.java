@@ -1,5 +1,8 @@
 package com.example.pjnog.cinealdia;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,10 +16,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    TextView user;
+    TextView email;
+    Fragment fragment;
+    Usuarios usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +39,8 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
-
+        Intent i = getIntent();
+        usuario = (Usuarios) i.getSerializableExtra("usuario");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -41,6 +49,25 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View header=navigationView.getHeaderView(0);
+        user = (TextView)header.findViewById(R.id.userName);
+        email = (TextView)header.findViewById(R.id.userEmail);
+        user.setText(usuario.getUsuario());
+        email.setText(usuario.getEmail());
+        //boolean fragmentTransaction = true;
+        //fragment = new PeliculasFragment();
+        //fragment.setArguments(args);
+       // if(fragmentTransaction) {
+            //getSupportFragmentManager().beginTransaction()
+                    //.replace(R.id.content_frame, fragment)
+                    //.commit();
+
+
+
+        //}
+
+
+
     }
 
     @Override
@@ -80,18 +107,26 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         boolean fragmentTransaction = false;
-        Fragment fragment = null;
+        fragment = null;
         int id = item.getItemId();
 
         if (id == R.id.nav_peliculas) {
             fragment = new PeliculasFragment();
+            Bundle bundle=new Bundle();
+            bundle.putInt("generos", -2);
+            fragment.setArguments(bundle);
             fragmentTransaction = true;
 
         } else if (id == R.id.nav_actores) {
             fragment = new ActoresFragment();
             fragmentTransaction = true;
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_generos) {
+            fragment = new PeliculasFragment();
+            Bundle bundle=new Bundle();
+            bundle.putInt("generos", (usuario.getId_gen()));
+            fragment.setArguments(bundle);
+            fragmentTransaction = true;
 
         } else if (id == R.id.nav_manage) {
 

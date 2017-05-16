@@ -87,8 +87,8 @@ public class ActoresActivity extends AppCompatActivity {
                         PackageManager.PERMISSION_GRANTED &&
                         ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION) ==
                                 PackageManager.PERMISSION_GRANTED) {
-                    googleMap.setMyLocationEnabled(true);
-                    googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+                   // googleMap.setMyLocationEnabled(true);
+                    //googleMap.getUiSettings().setMyLocationButtonEnabled(true);
                 } else {
                     ActivityCompat.requestPermissions(ActoresActivity.this, new String[] {
                                     Manifest.permission.ACCESS_FINE_LOCATION,
@@ -98,12 +98,12 @@ public class ActoresActivity extends AppCompatActivity {
                 }
 
                 // For dropping a marker at a point on the Map
-               // LatLng sydney = new LatLng(-34, 151);
-               // googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
+                LatLng sydney = new LatLng(-34, 151);
+                googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
 
                 // For zooming automatically to the location of the marker
-               // CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
-                //googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+               CameraPosition cameraPosition = new CameraPosition.Builder().target(sydney).zoom(12).build();
+                googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
         });
 
