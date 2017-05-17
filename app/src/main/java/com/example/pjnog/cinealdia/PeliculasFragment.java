@@ -36,6 +36,7 @@ public class PeliculasFragment extends Fragment {
     private RecyclerView rv;
     HttpURLConnection con;
     List<Peliculas> peliculas;
+    Busqueda usu;
 
     public PeliculasFragment() {
         // Required empty public constructor
@@ -47,8 +48,9 @@ public class PeliculasFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         Context context = inflater.getContext();
-        int gen=getArguments().getInt("generos");
-        Toast.makeText(context, gen+"", Toast.LENGTH_LONG).show();
+        //int gen=getArguments().getInt("generos");
+        usu = (Busqueda)getArguments().getSerializable("busqueda");
+        Toast.makeText(context, usu.getModo()+"", Toast.LENGTH_LONG).show();
         View rootView =  inflater.inflate(R.layout.recyclerview_activity, container, false);
         rv=(RecyclerView)rootView.findViewById(R.id.rv);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(context, 2);
@@ -56,13 +58,18 @@ public class PeliculasFragment extends Fragment {
         rv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         rv.setItemAnimator(new DefaultItemAnimator());
         String url="";
-        if (gen==-2)
+
+        if (usu.getModo()==1)
         {
            url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?peliculas";
         }
-        else{
+        else if (usu.getModo()==2){
 
-            url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?genero="+gen;
+            url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?genero="+usu.getGenero();
+        }
+        else if (usu.getModo()==3)
+        {
+            url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?busqueda="+usu.getPelicula();
         }
         try {
             ConnectivityManager connMgr = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);

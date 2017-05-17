@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -24,6 +25,23 @@ public class MainActivity extends AppCompatActivity
     TextView email;
     Fragment fragment;
     Usuarios usuario;
+    private Busqueda bus;
+
+    private void generarFragment()
+    {
+        boolean fragmentTransaction = true;
+        fragment = new PeliculasFragment();
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("busqueda", bus);
+        fragment.setArguments(bundle);
+        //fragment.setArguments(args);
+        if(fragmentTransaction) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, fragment)
+                    .commit();
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +72,10 @@ public class MainActivity extends AppCompatActivity
         email = (TextView)header.findViewById(R.id.userEmail);
         user.setText(usuario.getUsuario());
         email.setText(usuario.getEmail());
+        bus = new Busqueda();
+        bus.setModo(1);
+
+        generarFragment();
         //boolean fragmentTransaction = true;
         //fragment = new PeliculasFragment();
         //fragment.setArguments(args);
@@ -84,6 +106,32 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        final MenuItem myActionMenuItem = menu.findItem( R.id.action_search);
+        final SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // Toast like print
+                // UserFeedback.show( "SearchOnQueryTextSubmit: " + query);
+                //Toast.makeText(MainActivity.this, query, Toast.LENGTH_LONG).show();
+                bus = new Busqueda();
+                bus.setModo(3);
+                bus.setPelicula(query);
+                generarFragment();
+
+                if( ! searchView.isIconified()) {
+                    searchView.setIconified(true);
+                }
+                myActionMenuItem.collapseActionView();
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                // UserFeedback.show( "SearchOnQueryTextChanged: " + s);
+                //Toast.makeText(MainActivity.this, s, Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
         return true;
     }
 
@@ -113,7 +161,10 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_peliculas) {
             fragment = new PeliculasFragment();
             Bundle bundle=new Bundle();
-            bundle.putInt("generos", -2);
+            bus = new Busqueda();
+            bus.setModo(1);
+
+            bundle.putSerializable("busqueda", bus);
             fragment.setArguments(bundle);
             fragmentTransaction = true;
 
@@ -124,7 +175,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_generos) {
             fragment = new PeliculasFragment();
             Bundle bundle=new Bundle();
-            bundle.putInt("generos", (usuario.getId_gen()));
+            bus = new Busqueda();
+            bus.setModo(2);
+            bus.setGenero(usuario.getId_gen());
+            bundle.putSerializable("busqueda", bus);
             fragment.setArguments(bundle);
             fragmentTransaction = true;
 
