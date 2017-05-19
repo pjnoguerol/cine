@@ -18,6 +18,10 @@ public class Peliculas implements Serializable
     private String banda;
     private String imagen;
     private List<Actores> actor;
+    private String musica;
+    private String bandasonora;
+    private String sinopsis;
+    private String critica;
 
     public Peliculas(int id_pel, String nombre, String director, Date fecha, String genero, String banda, String imagen, List<Actores> actor) {
         this.id_pel = id_pel;
@@ -28,6 +32,38 @@ public class Peliculas implements Serializable
         this.banda = banda;
         this.imagen = imagen;
         this.actor = actor;
+    }
+
+    public String getSinopsis() {
+        return sinopsis;
+    }
+
+    public void setSinopsis(String sinopsis) {
+        this.sinopsis = sinopsis;
+    }
+
+    public String getCritica() {
+        return critica;
+    }
+
+    public void setCritica(String critica) {
+        this.critica = critica;
+    }
+
+    public String getMusica() {
+        return musica;
+    }
+
+    public void setMusica(String musica) {
+        this.musica = musica;
+    }
+
+    public String getBandaSonora() {
+        return bandasonora;
+    }
+
+    public void setBandaSonora(String bandasonora) {
+        this.bandasonora = bandasonora;
     }
 
     public int getId_pel() {

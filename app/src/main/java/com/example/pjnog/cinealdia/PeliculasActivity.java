@@ -24,6 +24,8 @@ import java.util.concurrent.TimeUnit;
 public class PeliculasActivity extends AppCompatActivity {
     private TextView test1;
     private TextView test2;
+    private TextView sinopsis;
+    private TextView critica;
     private ImageView img;
     static MediaPlayer mPlayer;
     private ToggleButton tog;
@@ -71,9 +73,11 @@ public class PeliculasActivity extends AppCompatActivity {
         tabs.setCurrentTab(0);
 
         Intent i = getIntent();
-        Peliculas pelicula = (Peliculas) i.getSerializableExtra("peliculas");
+        final Peliculas pelicula = (Peliculas) i.getSerializableExtra("peliculas");
         test1 = (TextView) findViewById(R.id.textView1);
         test2 = (TextView) findViewById(R.id.namePeliculaActivity);
+        sinopsis = (TextView) findViewById(R.id.sinopsis);
+        critica = (TextView) findViewById(R.id.critica);
         String datos="";
         datos += "DIRECTOR: "+ pelicula.getDirector()+ "\r\n";
         datos += "ACTORES: ";
@@ -81,9 +85,12 @@ public class PeliculasActivity extends AppCompatActivity {
         {
             datos += act.getNombre()+",";
         }
-
+        datos+="\r\n";
+        datos+="BANDA SONORA: "+ pelicula.getBandaSonora();
         test1.setText(datos);
         test2.setText(pelicula.getNombre());
+        sinopsis.setText(pelicula.getSinopsis());
+        critica.setText(pelicula.getCritica());
         img = (ImageView) findViewById(R.id.imagenPeliculaActivity);
         seekbar = (SeekBar)findViewById(R.id.seekBar);
         seekbar.setClickable(false);
@@ -97,12 +104,13 @@ public class PeliculasActivity extends AppCompatActivity {
         tog.setOnClickListener(new View.OnClickListener(){
             public void onClick(View ar)
             {
+                oneTimeOnly=0;
                 if(tog.isChecked())
                 {
                     if(mPlayer!=null && mPlayer.isPlaying()){
                         mPlayer.stop();
                     }
-                    String url = "http://www.intraco.es/cinealdia/music/salvar.mp3";
+                    String url = "http://www.intraco.es/cinealdia/music/"+pelicula.getMusica();
                     mPlayer = new MediaPlayer();
                     mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                     try {
