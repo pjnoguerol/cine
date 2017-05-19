@@ -182,7 +182,9 @@ public class MainActivity extends AppCompatActivity
             fragment.setArguments(bundle);
             fragmentTransaction = true;
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.contactos) {
+            fragment = new ContactosFragment();
+            fragmentTransaction = true;
 
         }else if (id == R.id.posicion) {
             fragment = new PosicionFragment();
