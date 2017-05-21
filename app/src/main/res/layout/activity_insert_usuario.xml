@@ -8,16 +8,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.pjnog.cinealdia.LoginActivity">
+    tools:context="com.example.pjnog.cinealdia.InsertUsuario">
 
     <!-- Login progress -->
-    <ProgressBar
-        android:id="@+id/login_progress"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+
 
     <ScrollView
         android:id="@+id/login_form"
@@ -35,7 +29,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/userLogin"
+                    android:id="@+id/userInsert"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Usuario"
@@ -62,6 +56,42 @@
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/userEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/userTelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Telefono"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </android.support.design.widget.TextInputLayout>
+            <Spinner
+                android:id="@+id/UserGeneros"
+                android:layout_margin="30sp"
+                android:layout_width="fill_parent"
+
+                android:layout_height="wrap_content" >
+
+            </Spinner>
 
             <Button
                 android:id="@+id/btLogin"
@@ -69,16 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="LOGIN"
-                android:textStyle="bold" />
-            <Button
-                android:id="@+id/btInsert"
-                style="?android:textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50sp"
-                android:layout_marginLeft="120sp"
-                android:text="INSERTAR USUARIO"
+                android:text="Insertar"
                 android:textStyle="bold" />
 
         </LinearLayout>

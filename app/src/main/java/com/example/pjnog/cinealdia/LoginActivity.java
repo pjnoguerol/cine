@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText usua;
     EditText pass;
     Button bt1;
+    Button insert;
     HttpURLConnection con;
     Usuarios usuario;
     public class JsonTask extends AsyncTask<URL, Void, Usuarios> {
@@ -115,6 +116,8 @@ public class LoginActivity extends AppCompatActivity {
         usua = (EditText)findViewById(R.id.userLogin);
         pass = (EditText) findViewById(R.id.passwordLogin);
         bt1 = (Button)findViewById(R.id.btLogin);
+        insert = (Button)findViewById(R.id.btInsert);
+
 
         bt1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,6 +141,15 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+            }
+        });
+
+        insert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginActivity.this, InsertUsuario.class);
+
+                startActivity(i);
             }
         });
 
