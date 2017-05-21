@@ -4,35 +4,35 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_generos"
-            android:icon="@mipmap/ic_pelicula"
+            android:icon="@drawable/ic_movie"
             android:title="Mis Generos" />
         <item
             android:id="@+id/nav_peliculas"
-            android:icon="@mipmap/ic_pelicula"
+            android:icon="@drawable/ic_movies"
             android:title="Peliculas" />
         <item
             android:id="@+id/nav_actores"
-            android:icon="@mipmap/ic_actor"
+            android:icon="@drawable/ic_actor"
             android:title="Actores" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@mipmap/ic_director"
+            android:id="@+id/nav_directores"
+            android:icon="@drawable/ic_actores"
             android:title="Directores" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@mipmap/ic_music"
+            android:id="@+id/nav_sonoras"
+            android:icon="@drawable/ic_musica"
             android:title="Bandas Sonoras" />
         <item
             android:id="@+id/posicion"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/ic_gps"
             android:title="Mi Posicion" />
     </group>
-    <item android:title="Communicate">
+    <item android:title="Social">
         <menu>
 
             <item
                 android:id="@+id/contactos"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_contactos"
                 android:title="Contactos" />
         </menu>
     </item>

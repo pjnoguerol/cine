@@ -32,12 +32,12 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ActoresFragment extends Fragment {
+public class SonorasFragment extends Fragment {
     private RecyclerView rv;
     HttpURLConnection con;
-    List<Actores> actores;
+    List<BandasSonoras> sonoras;
 
-    public ActoresFragment() {
+    public SonorasFragment() {
         // Required empty public constructor
     }
 
@@ -63,7 +63,7 @@ public class ActoresFragment extends Fragment {
             if (networkInfo != null && networkInfo.isConnected()) {
                 new JsonTask().
                         execute(
-                                new URL(Constantes.SERVIDOR+"/cinealdia/cinealdia_clase.php?actorlist"));
+                                new URL(Constantes.SERVIDOR+"/cinealdia/cinealdia_clase.php?sonoras"));
             } else {
                 Toast.makeText(context, "Error de conexión", Toast.LENGTH_LONG).show();
             }
@@ -76,10 +76,10 @@ public class ActoresFragment extends Fragment {
         return rootView;
     }
 
-    public class JsonTask extends AsyncTask<URL, Void, List<Actores>>{
+    public class JsonTask extends AsyncTask<URL, Void, List<BandasSonoras>>{
 
         @Override
-        protected List<Actores> doInBackground(URL... urls) {
+        protected List<BandasSonoras> doInBackground(URL... urls) {
 
 
             try {
@@ -93,7 +93,7 @@ public class ActoresFragment extends Fragment {
                 int statusCode = con.getResponseCode();
 
                 if(statusCode!=200) {
-                    actores = new ArrayList<>();
+                    sonoras = new ArrayList<>();
                     //animales.add(new Animal("Error",null,null));
 
                 } else {
@@ -102,10 +102,10 @@ public class ActoresFragment extends Fragment {
                     InputStream in = new BufferedInputStream(con.getInputStream());
 
                     // JsonAnimalParser parser = new JsonAnimalParser();
-                    GsonActorParser parser = new GsonActorParser();
+                    GsonSonoraParser parser = new GsonSonoraParser();
 
-                    actores = parser.leerFlujoJson(in);
-                    System.out.println(actores.size());
+                    sonoras = parser.leerFlujoJson(in);
+                    System.out.println(sonoras.size());
 
 
                 }
@@ -116,20 +116,20 @@ public class ActoresFragment extends Fragment {
             }finally {
                 con.disconnect();
             }
-            return actores;
+            return sonoras;
         }
 
 
         @TargetApi(Build.VERSION_CODES.GINGERBREAD)
         @Override
-        protected void onPostExecute(List<Actores> actores) {
+        protected void onPostExecute(List<BandasSonoras> sonoras) {
             /*
             Asignar los objetos de Json parseados al adaptador
              */
-            if(actores!=null) {
+            if(sonoras!=null) {
                 //  adaptador = new AdaptadorDeAnimales(getBaseContext(), animales);
                 // lista.setAdapter(adaptador);
-                RVAdapter adapter = new RVAdapter(actores);
+                RVAdapter5 adapter = new RVAdapter5(sonoras);
                 rv.setAdapter(adapter);
 
             }else{

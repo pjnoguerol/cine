@@ -61,15 +61,15 @@ public class PeliculasFragment extends Fragment {
 
         if (usu.getModo()==1)
         {
-           url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?peliculas";
+           url = Constantes.SERVIDOR+"/cinealdia/cinealdia_clase.php?peliculas";
         }
         else if (usu.getModo()==2){
 
-            url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?genero="+usu.getGenero();
+            url = Constantes.SERVIDOR+"/cinealdia/cinealdia_clase.php?genero="+usu.getGenero();
         }
         else if (usu.getModo()==3)
         {
-            url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?busqueda="+usu.getPelicula();
+            url = Constantes.SERVIDOR+"/cinealdia/cinealdia_clase.php?busqueda="+usu.getPelicula();
         }
         try {
             ConnectivityManager connMgr = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);

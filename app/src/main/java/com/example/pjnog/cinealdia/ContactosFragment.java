@@ -99,7 +99,7 @@ public class ContactosFragment extends Fragment {
         {
             try {
                 String listaCadena=android.text.TextUtils.join(",", lista);
-                String url = "http://www.intraco.es/cinealdia/cinealdia_clase.php?contactos="+listaCadena;
+                String url = Constantes.SERVIDOR+"/cinealdia/cinealdia_clase.php?contactos="+listaCadena;
                 //Toast.makeText(context, url, Toast.LENGTH_LONG).show();
                 System.out.println(url);
 

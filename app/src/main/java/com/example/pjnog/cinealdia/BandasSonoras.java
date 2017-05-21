@@ -1,10 +1,12 @@
 package com.example.pjnog.cinealdia;
 
+import java.io.Serializable;
+
 /**
  * Created by pjnog on 19/05/2017.
  */
 
-public class BandasSonoras {
+public class BandasSonoras implements Serializable {
 
     private int id_bson;
     private String nombre;

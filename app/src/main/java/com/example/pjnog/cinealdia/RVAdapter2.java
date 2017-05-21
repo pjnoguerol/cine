@@ -64,7 +64,7 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.PersonViewHolder
         }
 
         personViewHolder.personAge.setText(actor);
-        Picasso.with(personViewHolder.itemView.getContext()).load("http://www.intraco.es/cinealdia/img/"+peliculas.get(i).getImagen()).into(personViewHolder.personPhoto);
+        Picasso.with(personViewHolder.itemView.getContext()).load(Constantes.SERVIDOR+"/cinealdia/img/"+peliculas.get(i).getImagen()).into(personViewHolder.personPhoto);
         personViewHolder.personPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

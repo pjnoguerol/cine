@@ -2,6 +2,7 @@ package com.example.pjnog.cinealdia;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity
     TextView email;
     Fragment fragment;
     Usuarios usuario;
+
     private Busqueda bus;
 
     private void generarFragment()
@@ -42,6 +44,22 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void llamarSettings()
+    {
+        boolean fragmentTransaction = true;
+        fragment = new SettingsFragment();
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("usuario", usuario);
+        fragment.setArguments(bundle);
+        //fragment.setArguments(args);
+        if(fragmentTransaction) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.content_frame, fragment)
+                    .commit();
+        }
+        getSupportActionBar().setTitle("Settings");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +67,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +76,7 @@ public class MainActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+        */
         Intent i = getIntent();
         usuario = (Usuarios) i.getSerializableExtra("usuario");
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -76,17 +96,7 @@ public class MainActivity extends AppCompatActivity
         bus.setModo(1);
 
         generarFragment();
-        //boolean fragmentTransaction = true;
-        //fragment = new PeliculasFragment();
-        //fragment.setArguments(args);
-       // if(fragmentTransaction) {
-            //getSupportFragmentManager().beginTransaction()
-                    //.replace(R.id.content_frame, fragment)
-                    //.commit();
 
-
-
-        //}
 
 
 
@@ -144,7 +154,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            llamarSettings();
         }
 
         return super.onOptionsItemSelected(item);
@@ -190,7 +200,14 @@ public class MainActivity extends AppCompatActivity
             fragment = new PosicionFragment();
             fragmentTransaction = true;
         }
-
+        else if (id == R.id.nav_directores) {
+            fragment = new DirectoresFragment();
+            fragmentTransaction = true;
+        }
+        else if (id == R.id.nav_sonoras) {
+            fragment = new SonorasFragment();
+            fragmentTransaction = true;
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if(fragmentTransaction) {
             getSupportFragmentManager().beginTransaction()

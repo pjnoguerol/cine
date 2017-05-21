@@ -129,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         new LoginActivity.JsonTask().
                                 execute(
-                                        new URL("http://www.intraco.es/cinealdia/cinealdia_clase.php?usuario="+usua.getText()+"&password="+pass.getText()));
+                                        new URL(Constantes.SERVIDOR+"/cinealdia/cinealdia_clase.php?usuario="+usua.getText()+"&password="+pass.getText()));
                     } else {
                         Toast.makeText(LoginActivity.this, "Error de conexión", Toast.LENGTH_LONG).show();
                     }

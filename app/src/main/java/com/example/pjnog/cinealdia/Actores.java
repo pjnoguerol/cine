@@ -15,6 +15,7 @@ public class Actores implements Serializable
     private String imagen;
     private Double longitud;
     private Double latitud;
+    private String biografia;
 
     public Actores(int id_actor, String nombre, String imagen, Double longitud, Double latitud) {
 
@@ -23,6 +24,14 @@ public class Actores implements Serializable
         this.imagen = imagen;
         this.longitud = longitud;
         this.latitud = latitud;
+    }
+
+    public String getBiografia() {
+        return biografia;
+    }
+
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
     }
 
     public String getNombre() {

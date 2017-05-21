@@ -9,21 +9,12 @@
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/menu1"
-        android:orderInCategory="100"
-        android:title="menu1"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="always|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView"
-        android:title="Search"/>
-    <item
-        android:id="@+id/menu3"
-        android:orderInCategory="100"
-        android:title="menu3"
-        app:showAsAction="never" />
+        android:title="Busqueda"/>
+
 
 
 </menu>

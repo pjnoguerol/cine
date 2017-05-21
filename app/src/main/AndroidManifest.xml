@@ -42,6 +42,8 @@
         </activity>
         <activity android:name=".PeliculasActivity" />
         <activity android:name=".ActoresActivity" />
+        <activity android:name=".DirectoresActivity" />
+        <activity android:name=".SonorasActivity" />
     </application>
 
 </manifest>

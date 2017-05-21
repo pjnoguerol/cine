@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
+public class RVAdapter5 extends RecyclerView.Adapter<RVAdapter5.PersonViewHolder>  {
 
     public static class PersonViewHolder extends RecyclerView.ViewHolder {
 
@@ -25,18 +25,18 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
         PersonViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.cv);
-            personName = (TextView)itemView.findViewById(R.id.nombreActor);
-            personAge = (TextView)itemView.findViewById(R.id.textActor);
-            personPhoto = (ImageView)itemView.findViewById(R.id.imagenActor);
+            cv = (CardView)itemView.findViewById(R.id.cv2);
+            personName = (TextView)itemView.findViewById(R.id.nombrePelicula);
+            personAge = (TextView)itemView.findViewById(R.id.textPelicula);
+            personPhoto = (ImageView)itemView.findViewById(R.id.imagenPelicula);
         }
 
     }
 
-    List<Actores> actores;
+    List<BandasSonoras> sonoras;
 
-    RVAdapter(List<Actores> persons){
-        this.actores = persons;
+    RVAdapter5(List<BandasSonoras> persons){
+        this.sonoras = persons;
     }
 
     @Override
@@ -46,24 +46,28 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item2, viewGroup, false);
         PersonViewHolder pvh = new PersonViewHolder(v);
         return pvh;
     }
 
     @Override
-    public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
+    public void onBindViewHolder(final PersonViewHolder personViewHolder, int i) {
 
-        final Actores act = actores.get(i);
-        personViewHolder.personName.setText(actores.get(i).getNombre());
-        personViewHolder.personAge.setText(actores.get(i).getImagen());
-        Picasso.with(personViewHolder.itemView.getContext()).load(Constantes.SERVIDOR+"/cinealdia/img/"+actores.get(i).getImagen()).into(personViewHolder.personPhoto);
+
+        final BandasSonoras sonora = sonoras.get(i);
+        final int id = sonoras.get(i).getId_bson();
+        personViewHolder.personName.setText(sonoras.get(i).getNombre());
+
+
+        //personViewHolder.personAge.setText(actor);
+        Picasso.with(personViewHolder.itemView.getContext()).load(Constantes.SERVIDOR+"/cinealdia/img/"+sonoras.get(i).getImagen()).into(personViewHolder.personPhoto);
         personViewHolder.personPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent i = new Intent(view.getContext(), ActoresActivity.class);
-                i.putExtra("actores",act);
+                Toast.makeText(view.getContext(), "aqui.."+id , Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(view.getContext(), SonorasActivity.class);
+                i.putExtra("sonoras",sonora);
                 view.getContext().startActivity(i);
             }
         });
@@ -72,6 +76,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
     @Override
     public int getItemCount() {
-        return actores.size();
+        return sonoras.size();
     }
 }

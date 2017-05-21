@@ -58,12 +58,13 @@ public class ActoresActivity extends AppCompatActivity {
         tabs.setCurrentTab(0);
 
         Intent i = getIntent();
-        Actores actor = (Actores) i.getSerializableExtra("actores");
+        final Actores actor = (Actores) i.getSerializableExtra("actores");
         test1 = (TextView) findViewById(R.id.textView1);
         test2 = (TextView) findViewById(R.id.nameActorActivity);
         test2.setText(actor.getNombre());
+        test1.setText(actor.getBiografia());
         img = (ImageView) findViewById(R.id.imagenActoresActivity);
-        Picasso.with(this).load("http://www.intraco.es/cinealdia/img/" + actor.getImagen()).into(img);
+        Picasso.with(this).load(Constantes.SERVIDOR+"/cinealdia/img/" + actor.getImagen()).into(img);
         mMapView = (MapView) findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
 
@@ -98,7 +99,7 @@ public class ActoresActivity extends AppCompatActivity {
                 }
 
                 // For dropping a marker at a point on the Map
-                LatLng sydney = new LatLng(-34, 151);
+                LatLng sydney = new LatLng(actor.getLatitud(), actor.getLongitud());
                 googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker Title").snippet("Marker Description"));
 
                 // For zooming automatically to the location of the marker
